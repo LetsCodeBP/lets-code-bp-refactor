@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 
 app.get('/doubling', function (req, res) {
   if (req.query.input === undefined) {
-    res.body = {
+    res.status(400).body = {
       "error": "Please provide an input!"
     }
   } else {

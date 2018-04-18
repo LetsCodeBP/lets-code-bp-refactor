@@ -12,6 +12,10 @@ handle = function handle (id, info, where, data) {
         console.log(where +" "+ info);
         console.log(data);
     }
+    if ((data && data.status) === 400) {
+      $(id).append("<li>" + info +"</li>");
+      return
+    }
     $(id).append("<li>" + info + (data ? " - check the console for the response " : "")+"</li>");
 }
 $("#doubling").on("click", function () {
@@ -22,7 +26,7 @@ $("#doubling").on("click", function () {
            handle("#doubling_response", "not ok - without data", "Doubling", data);
        }
     }).error(function (err) {
-        handle("#doubling_response", "not ok - without data", "Doubling", err);
+        handle("#doubling_response", "OK - without data", "Doubling", err);
     });
     $.get(window.baseUrl + "/doubling", {input: 5}).done(function (data) {
         if("received" in data && "result" in data && data["received"] == 5 && data["result"] == 10) {
