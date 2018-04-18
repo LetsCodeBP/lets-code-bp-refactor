@@ -3,6 +3,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const transformation = require('./transformation')
+
 const app = express();
 
 app.use('/assets', express.static('assets'));
@@ -22,7 +24,7 @@ app.get('/doubling', function (req, res) {
     const input = Number(req.query.input)
     res.body = {
       "received": input,
-      "result":  input * 2
+      "result":  transformation.double(input)
     }
   }
   res.json(res.body);
