@@ -3,8 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const transformation = require('./transformation')
-
 const app = express();
 
 app.use('/assets', express.static('assets'));
@@ -15,20 +13,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/doubling', function (req, res) {
-  if (req.query.input === undefined) {
-    res.status(400).body = {
-      "error": "Please provide an input!"
-    }
-  } else {
-    const input = Number(req.query.input)
-    res.body = {
-      "received": input,
-      "result":  transformation.double(input)
-    }
-  }
-  res.json(res.body);
-});
+app.get('/doubling', require('./doubling-controller'));
 
 app.get('/greeter', function (req, res) {
   if (req.query.name === undefined) {
