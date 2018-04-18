@@ -115,10 +115,4 @@ app.post('/arrays', function (req, res) {
   res.json(body);
 });
 
-// app.post('/sith', function (req, res) {
-
-// }
-
-app.listen(8080, function() {
-  console.log('The server is running');
-});
+module.exports = app
