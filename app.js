@@ -19,9 +19,10 @@ app.get('/doubling', function (req, res) {
       "error": "Please provide an input!"
     }
   } else {
+    const input = Number(req.query.input)
     res.body = {
-      "received": req.query.input,
-      "result":  req.query.input * 2
+      "received": input,
+      "result":  input * 2
     }
   }
   res.json(res.body);
